@@ -19,6 +19,7 @@ export interface GojsDiagramProps<N extends BaseNodeModel, L extends LinkModel> 
     createDiagram: (id: string) => Diagram;
     diagramId: string;
     className: string;
+    onDropHandler?: (event: React.DragEvent<HTMLDivElement>) => void;
     onModelChange?: (event: ModelChangeEvent<N, L>) => void;
     linkFromPortIdProperty?: string;
     linkToPortIdProperty?: string;
@@ -104,7 +105,14 @@ class GojsDiagram<N extends BaseNodeModel, L extends LinkModel> extends React.Pu
         });
     }
     render() {
-        return <div id={this.props.diagramId} className={this.props.className} />;
+        return (
+            <div
+                id={this.props.diagramId}
+                className={this.props.className}
+                onDrop={this.props.onDropHandler}
+                onDragOver={this.dragOverHandler}
+            />
+        );
     }
 
     enqueueEvent(event: ModelChangeEvent<N, L>) {
@@ -118,6 +126,11 @@ class GojsDiagram<N extends BaseNodeModel, L extends LinkModel> extends React.Pu
     dispatchAll() {
         this.eventsToDispatch.forEach(eventToDispatch => this.props.onModelChange!(eventToDispatch));
         this.eventsToDispatch = [];
+    }
+
+    private dragOverHandler(evt: React.DragEvent<Element>) {
+        evt.preventDefault();
+        return false;
     }
 
     private modelChangedHandler(evt: ChangedEvent) {
