@@ -12,6 +12,9 @@
         "coveralls": "cat ./coverage/lcov.info | node node_modules/.bin/coveralls",
         "lint": "tslint -c tslint.json 'src/**/*.{ts,tsx}'"
     },
+    "files": [
+        "dist"
+    ],
     "repository": {
         "type": "git",
         "url": "git+https://github.com/xcomponent/react-gojs.git"
@@ -50,7 +53,7 @@
         "typescript": "^3.3.3333"
     },
     "dependencies": {
-        "gojs": "^2.0.4"
+        "gojs": "^1.8.29"
     },
     "peerDependencies": {
         "react": "16.x",
