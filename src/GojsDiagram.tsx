@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as go from 'gojs';
-import { Diagram, ChangedEvent, ObjectData } from 'gojs';
+import { Diagram, ChangedEvent } from 'gojs';
 import { DiagramModel, BaseNodeModel, LinkModel } from './model';
 import { ModelChangeEvent } from './modelChangeEvent';
 import {
@@ -27,17 +27,17 @@ export interface GojsDiagramProps<N extends BaseNodeModel, L extends LinkModel> 
     linkKeyProperty?: string;
     makeUniqueKeyFunction?: () => go.Key;
     makeUniqueLinkKeyFunction?: () => go.Key;
-    copyNodeDataFunction?: (data: ObjectData, model: go.Model) => ObjectData;
+    copyNodeDataFunction?: (data: Object, model: go.Model) => Object;
     updateDiagramProps?: (myDiagram: Diagram) => void;
     defaultSelectedNode?: string;
 }
 
 export interface GojsModel extends go.Model {
-    linkDataArray: ObjectData[];
-    addLinkDataCollection: (links: ObjectData[]) => void;
-    removeLinkDataCollection: (links: ObjectData[]) => void;
-    addLinkData: (link: ObjectData) => void;
-    removeLinkData: (link: ObjectData) => void;
+    linkDataArray: Object[];
+    addLinkDataCollection: (links: Object[]) => void;
+    removeLinkDataCollection: (links: Object[]) => void;
+    addLinkData: (link: Object) => void;
+    removeLinkData: (link: Object) => void;
 }
 
 class GojsDiagram<N extends BaseNodeModel, L extends LinkModel> extends React.PureComponent<GojsDiagramProps<N, L>>
