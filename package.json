@@ -17,7 +17,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/xcomponent/react-gojs.git"
+        "url": "git+https://github.com/shivisuper/react-gojs.git"
     },
     "keywords": [
         "gojs",
@@ -28,7 +28,7 @@
     "bugs": {
         "url": "https://github.com/xcomponent/react-gojs/issues"
     },
-    "homepage": "https://github.com/xcomponent/react-gojs#readme",
+    "homepage": "https://github.com/shivisuper/react-gojs#readme",
     "devDependencies": {
         "@types/enzyme": "^3.10.3",
         "@types/jest": "^24.0.17",
