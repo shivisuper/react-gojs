@@ -19,6 +19,7 @@ export interface GojsDiagramProps<N extends BaseNodeModel, L extends LinkModel> 
     makeUniqueLinkKeyFunction?: () => go.Key;
     copyNodeDataFunction?: (data: Object, model: go.Model) => Object;
     updateDiagramProps?: (myDiagram: Diagram) => void;
+    defaultSelectedNode?: string;
 }
 export interface GojsModel extends go.Model {
     linkDataArray: Object[];

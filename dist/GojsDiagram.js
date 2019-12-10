@@ -91,7 +91,8 @@ var GojsDiagram = /** @class */ (function(_super) {
         var _a = this.props,
             createDiagram = _a.createDiagram,
             diagramId = _a.diagramId,
-            onModelChange = _a.onModelChange;
+            onModelChange = _a.onModelChange,
+            defaultSelectedNode = _a.defaultSelectedNode;
         this.myDiagram = createDiagram(diagramId);
         if (onModelChange) {
             this.myDiagram.addModelChangedListener(this.modelChangedHandler);
@@ -115,6 +116,9 @@ var GojsDiagram = /** @class */ (function(_super) {
                 }
             )
         );
+        if (defaultSelectedNode) {
+            this.myDiagram.select(this.myDiagram.findNodeForKey(defaultSelectedNode));
+        }
     };
     GojsDiagram.prototype.render = function() {
         return React.createElement('div', {
@@ -178,6 +182,17 @@ var GojsDiagram = /** @class */ (function(_super) {
             .filter(function(e) {
                 return (
                     _this.myDiagram.model.linkDataArray.findIndex(function(el) {
+                        if (
+                            _this.props.linkKeyProperty &&
+                            el[_this.props.linkKeyProperty] &&
+                            e[_this.props.linkKeyProperty]
+                        ) {
+                            return (
+                                el.from === e.from &&
+                                el.to === e.to &&
+                                el[_this.props.linkKeyProperty] === e[_this.props.linkKeyProperty]
+                            );
+                        }
                         return el.from === e.from && el.to === e.to;
                     }) === -1
                 );
@@ -189,6 +204,17 @@ var GojsDiagram = /** @class */ (function(_super) {
         var linksToRemove = this.myDiagram.model.linkDataArray.filter(function(e) {
             return (
                 _this.props.model.linkDataArray.findIndex(function(el) {
+                    if (
+                        _this.props.linkKeyProperty &&
+                        el[_this.props.linkKeyProperty] &&
+                        e[_this.props.linkKeyProperty]
+                    ) {
+                        return (
+                            el.from === e.from &&
+                            el.to === e.to &&
+                            el[_this.props.linkKeyProperty] === e[_this.props.linkKeyProperty]
+                        );
+                    }
                     return el.from === e.from && el.to === e.to;
                 }) === -1
             );
